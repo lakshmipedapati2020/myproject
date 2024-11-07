@@ -37,6 +37,16 @@ public class DefaultAwardService implements AwardService
 	public List<AwardModel> findAllAwards()
 	{
 		// XXX Auto-generated method stub
-		return awardDao.findAllAwards();
+		//return awardDao.findAllAwards();
+		final List<AwardModel> activeAwards = new ArrayList<>();
+		for (final AwardModel award : awardDao.findAllAwards())
+		{
+			if (award.getActive() == true)
+			{
+				activeAwards.add(award);
+			}
+		}
+		return activeAwards;
+	}
 	}
 }
